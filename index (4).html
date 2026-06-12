@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Shriya!</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #fff0f5 0%, #ffe6e9 100%);
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        overflow-x: hidden;
+        color: #4a4a4a;
+        padding-bottom: 40px;
+    }
+
+    /* --- WELCOME SCREEN --- */
+    #welcome-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 240, 245, 1);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .enter-btn {
+        background: #ff4081;
+        color: white;
+        font-size: 1.5rem;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-family: 'Dancing Script', cursive;
+        box-shadow: 0 5px 20px rgba(255, 64, 129, 0.4);
+        animation: pulse 1.5s infinite;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        outline: none;
+    }
+    .enter-btn:active {
+        transform: scale(0.95);
+    }
+
+    /* --- DECORATIONS --- */
+    .corner-decoration-left { position: absolute; top: 10px; left: 10px; width: 150px; z-index: 5; pointer-events: none; opacity: 0.9; }
+    .corner-decoration-right { position: absolute; top: 10px; right: 10px; width: 150px; z-index: 5; pointer-events: none; transform: scaleX(-1); opacity: 0.9; }
+
+    .container {
+        padding: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 6; 
+        display: none; 
+        opacity: 0;
+        transition: opacity 1s;
+    }
+
+    h1 {
+        font-family: 'Dancing Script', cursive;
+        color: #ff4081;
+        font-size: 3.5rem;
+        margin-top: 100px;
+        text-shadow: 2px 2px 0px #fff;
+        line-height: 1.2;
+    }
+
+    /* --- CAKE SECTION --- */
+    .cake-section { margin: 30px 0; position: relative; transition: transform 0.3s; }
+    .cake-section:active { transform: scale(0.95); }
+    .cake { font-size: 6rem; cursor: pointer; position: relative; display: inline-block; user-select: none; }
+    .flame { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 2rem; animation: flicker 1s infinite alternate; opacity: 1; transition: opacity 0.5s; }
+    .instruction { font-size: 1rem; color: #d63384; margin-top: 10px; font-weight: bold; background: #fff; display: inline-block; padding: 5px 15px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+
+    /* --- BOUQUET --- */
+    .bouquet-section { margin: 30px 0; animation: float 4s infinite ease-in-out; }
+    .bouquet-img { width: 180px; filter: drop-shadow(0 10px 15px rgba(255, 105, 180, 0.2)); }
+
+    /* --- WISHES CARD --- */
+    .wish-card { background: rgba(255,255,255,0.95); padding: 20px; border-radius: 15px; margin: 20px 0; border: 2px solid #fff; box-shadow: 0 5px 15px rgba(255,105,180,0.1); }
+
+    /* --- TO-DO LIST --- */
+    .checklist-section { background: #fff; padding: 20px; border-radius: 15px; margin: 30px 0; text-align: left; border-left: 5px solid #ff4081; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    .checklist-title { font-size: 1.2rem; color: #d63384; font-weight: bold; margin-bottom: 5px; text-align: center; font-family: 'Dancing Script', cursive; }
+    .checklist-hint { font-size: 0.85rem; color: #888; text-align: center; margin-bottom: 15px; font-style: italic; }
+    .task { display: flex; align-items: center; margin-bottom: 12px; font-size: 1rem; cursor: pointer; padding: 5px; border-radius: 5px; transition: background 0.2s; }
+    .task:hover { background: #fff0f5; }
+    .task input { margin-right: 15px; transform: scale(1.4); accent-color: #ff4081; }
+    .task span { transition: color 0.3s; }
+    .task input:checked + span { text-decoration: line-through; color: #bbb; }
+    
+    #hidden-roses { display: none; text-align: center; margin-top: 20px; animation: popUp 0.8s; }
+    #hidden-roses img { width: 120px; }
+
+    /* --- HAPPINESS GAME --- */
+    .heart-game { margin: 40px 0; padding: 25px; background: linear-gradient(to bottom right, #ff9a9e 0%, #fecfef 100%); border-radius: 20px; color: white; box-shadow: 0 10px 25px rgba(255, 154, 158, 0.4); position: relative; overflow: hidden; }
+    .heart-btn { font-size: 5rem; cursor: pointer; transition: transform 0.1s; display: inline-block; margin: 10px 0; filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2)); }
+    .heart-btn:active { transform: scale(0.8); }
+    .score-board { font-size: 1.4rem; font-weight: bold; margin-bottom: 10px; }
+    .level-text { font-size: 0.9rem; opacity: 0.9; min-height: 20px; }
+    #golden-card { display: none; background: linear-gradient(45deg, #ffd700, #fff, #ffd700); color: #b8860b; padding: 20px; border-radius: 15px; margin-top: 20px; box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); animation: popUp 1s ease-out; border: 2px solid #fff; }
+    .card-title { font-family: 'Dancing Script', cursive; font-size: 1.8rem; font-weight: bold; }
+    .card-body { font-size: 0.9rem; margin-top: 5px; color: #8a6e05; }
+
+    /* --- PREDICTION GAME --- */
+    .game-section { background: #fff; padding: 25px 20px; border-radius: 20px; margin: 40px 0; box-shadow: 0 8px 25px rgba(255, 105, 180, 0.15); border: 2px dashed #ff8fa3; }
+    .game-btn { background: linear-gradient(45deg, #ff4081, #ff80ab); color: white; border: none; padding: 12px 30px; border-radius: 30px; font-size: 1rem; cursor: pointer; font-weight: 600; box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3); margin-bottom: 15px; transition: transform 0.2s; }
+    .game-btn:active { transform: scale(0.95); }
+    #prediction-text { font-size: 1.2rem; font-weight: 600; color: #c2185b; min-height: 50px; margin-top: 15px; opacity: 0; transition: opacity 0.5s ease-in; }
+
+    /* --- GIFT BOX --- */
+    .gift-section { margin: 50px 0; height: 250px; display: flex; align-items: center; justify-content: center; }
+    #gift-box { font-size: 6rem; cursor: pointer; animation: shake 2.5s infinite; }
+    .tap-text { font-size: 1rem; color: #d63384; margin-top: 15px; font-weight: bold; animation: blink 1.5s infinite; }
+    #hidden-gift { display: none; background: #fff; border: 4px solid #ffd700; padding: 20px; border-radius: 20px; box-shadow: 0 0 40px rgba(255, 215, 0, 0.4); width: 85%; animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+    /* --- SHAYARI --- */
+    .shayari-clean { background: #fff; padding: 30px 20px; border-radius: 20px; margin-top: 40px; border-top: 5px solid #ff4081; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; }
+    .shayari-clean p { font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 1.1rem; color: #444; line-height: 1.8; margin: 0; }
+    
+    /* --- QUESTION SECTION --- */
+    .question-input { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ffcdd2; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 0.95rem; resize: vertical; min-height: 60px; box-sizing: border-box; }
+    .question-input:focus { outline: none; border-color: #ff4081; }
+    .submit-btn { background: linear-gradient(45deg, #ff4081, #ff80ab); color: white; border: none; padding: 12px 35px; border-radius: 30px; font-size: 1rem; cursor: pointer; font-weight: 600; box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3); margin-top: 10px; transition: transform 0.2s; }
+    .submit-btn:active { transform: scale(0.95); }
+    #thank-you-message { display: none; text-align: center; margin-top: 30px; padding: 40px 20px; background: linear-gradient(135deg, #fff0f5 0%, #ffe6e9 100%); border-radius: 20px; box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2); animation: popUp 0.8s; }
+    #thank-you-message h3 { font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: #ff4081; margin-bottom: 15px; text-shadow: 1px 1px 0px #fff; }
+    #thank-you-message p { font-size: 1.1rem; line-height: 1.8; color: #555; margin: 0; font-weight: 400; }
+    
+    /* --- FINAL MESSAGE --- */
+    .final-message { margin-top: 50px; padding: 20px; background: rgba(255, 255, 255, 0.6); border-radius: 15px; }
+    .final-message h3 { font-family: 'Dancing Script', cursive; font-size: 2rem; color: #ff4081; margin-bottom: 10px; }
+    .final-message p { font-size: 1rem; color: #555; line-height: 1.6; padding: 0 10px; }
+
+    /* --- FOOTER --- */
+    .footer { margin-top: 40px; padding: 20px; font-size: 0.9rem; color: #888; font-weight: 400; }
+    .footer span { color: #ff4081; }
+
+    /* Animations */
+    @keyframes flicker { 0% { opacity: 1; transform: translateX(-50%) scale(1); } 100% { opacity: 0.8; transform: translateX(-50%) scale(1.1); } }
+    @keyframes shake { 0%, 100% { rotate: 0deg; } 25% { rotate: 5deg; } 75% { rotate: -5deg; } }
+    @keyframes blink { 50% { opacity: 0.5; } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+    @keyframes popUp { from { transform: scale(0); } to { transform: scale(1); } }
+    @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 400px; } }
+    @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+    .falling-item { position: fixed; top: -10vh; z-index: 100; pointer-events: none; animation: fall linear forwards; }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        #welcome-screen h1 { font-size: 2rem !important; }
+        h1 { font-size: 2.5rem !important; margin-top: 80px; }
+        .container { padding: 15px; }
+        .cake { font-size: 5rem; }
+        .cake img { width: 200px !important; }
+        .heart-btn { font-size: 4rem; }
+        #gift-box { font-size: 5rem; }
+        #gift-box img { width: 150px !important; }
+        #hidden-gift img { width: 120px !important; }
+        
+        /* Image Responsiveness */
+        .corner-decoration-left { width: 120px !important; }
+        .corner-decoration-right { width: 120px !important; }
+        .bouquet-img { width: 220px !important; }
+        #hidden-roses img { width: 170px !important; }
+        
+        /* AI Gift Section Mobile */
+        .ai-gift-section { padding: 20px 15px !important; }
+        .ai-gift-section h3 { font-size: 1.7rem !important; }
+        .ai-gift-section p { font-size: 0.9rem !important; }
+        .ai-gift-section button { font-size: 0.95rem !important; padding: 10px 25px !important; }
+        #ai-prompt-container { padding: 15px; max-height: 300px; }
+        #ai-prompt-text { font-size: 0.8rem !important; }
+    }
+</style>
+</head>
+<body>
+
+    <!-- AUDIO PLAYERS -->
+    <audio id="piano-audio" preload="auto">
+        <source src="piano.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="song-audio" preload="auto">
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="welcome-screen">
+        <h1 style="margin-top:0; font-size: 2.5rem;">For Shriya ❤️</h1>
+        <p style="margin-bottom: 30px; font-size: 1.1rem;">Turn up your volume 🔊<br>A special surprise awaits...</p>
+        <button class="enter-btn" onclick="startExperience()">Open Gift 🎁</button>
+    </div>
+
+    <div class="container" id="main-site">
+        
+        <img src="corner-flower.png" class="corner-decoration-left" alt="Corner Flowers">
+        <img src="corner-flower.png" class="corner-decoration-right" alt="Corner Flowers">
+
+        <h1>Happy Birthday<br>Shriya! 🎂</h1>
+        
+        <div class="cake-section" onclick="blowCandle()">
+            <p class="instruction">👇 Tap the candle to make a wish!</p>
+            <div class="cake">
+                <div class="flame" id="candle-flame">🔥</div>
+                <img src="cake.png" alt="Birthday Cake" style="width: 250px; border-radius: 10px;">
+            </div>
+        </div>
+
+        <div class="wish-card" style="margin-top: 40px; background: linear-gradient(135deg, #ffd6e3 0%, #ffc9de 100%); border: 2px solid #ffb3d1;">
+            <div class="bouquet-section">
+                <img src="bouquet.png" alt="Beautiful Flowers" class="bouquet-img" style="width: 280px;">
+                <p style="color: #d63384; font-size: 0.9rem; margin-top: 10px; font-weight: 500;">Sending you flowers filled with happiness!</p>
+            </div>
+        </div>
+
+        <div class="wish-card" style="background: linear-gradient(135deg, #fff5f7 0%, #ffe8f0 100%); border: 2px solid #ffd6e3; box-shadow: 0 8px 20px rgba(255, 105, 180, 0.15);">
+            <p style="font-weight: 500; color: #555; line-height: 1.8;">Hey Shriya! Wishing you a day full of happiness and a year full of joy. May all your hard work pay off this year! Keep shining like you always do. ✨</p>
+        </div>
+
+        <div class="checklist-section">
+            <div class="checklist-title">📝 To-Do List for Today:</div>
+            <div class="checklist-hint">(Tick all boxes for a BIG surprise! 👇)</div>
+            <label class="task"><input type="checkbox" onchange="checkTask()"> <span>Smile instantly 😊</span></label>
+            <label class="task"><input type="checkbox" onchange="checkTask()"> <span>Eat extra Cake 🍰</span></label>
+            <label class="task"><input type="checkbox" onchange="checkTask()"> <span>Forget all worries 💆‍♀️</span></label>
+            <label class="task"><input type="checkbox" onchange="checkTask()"> <span>Feel like a Princess 👸</span></label>
+            <div id="hidden-roses">
+                <br>
+                <img src="roses.png" alt="Red Roses" style="width: 200px;">
+                <p style="color:#d63384; font-weight:bold; margin-top:10px;">🌹 Just for you! 🌹</p>
+            </div>
+        </div>
+
+        <div class="heart-game">
+            <h3>Fill the Happiness Meter!</h3>
+            <div class="score-board">Happiness: <span id="score">0</span>%</div>
+            <div class="level-text" id="level-msg">Tap the heart continuously! 👇</div>
+            <div class="heart-btn" onclick="addHeart()">💖</div>
+            <div id="golden-card">
+                <div class="card-title">✨ Lifetime Warranty ✨</div>
+                <div class="card-body">This card certifies that <b>Shriya</b><br>is entitled to unlimited smiles & happiness.<br><small>Valid: Forever</small></div>
+            </div>
+        </div>
+
+        <div class="game-section">
+            <h3 style="color:#d63384; margin-top:0;">🔮 Yearly Prediction</h3>
+            <p style="font-size:0.9rem; color:#777; margin-bottom: 15px;">Tap below to see what the stars say!</p>
+            <button class="game-btn" onclick="showPrediction()">Reveal My Future</button>
+            <div id="prediction-text"></div>
+        </div>
+
+        <div class="special-date-card" style="background: #FFCC00; color: #1a1a1a; padding: 25px; border-radius: 20px; margin: 40px 0; box-shadow: 0 10px 30px rgba(255, 204, 0, 0.4); border: 3px solid #FF8C00;">
+            
+            <p style="font-size: 1.15rem; font-weight: 600; margin-top: 0; margin-bottom: 15px; color: #FF6B00;">
+                📅 People born on 25 July 🎂
+            </p>
+            
+            <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; color: #2c2c2c;">
+                Did you know? People born on this date are known to be <b>Creative, Kind-hearted</b> and have a <b>Magnetic Personality</b>. 
+                But wait... there's a deeper connection! 🏏
+            </p>
+
+            <h3 style="font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin: 20px 0 15px 0; color: #1a1a1a;">The Magic of Number 7 ✨</h3>
+
+            <!-- Professional Number 7 Magic Card with Butterfly -->
+            <div style="position: relative; text-align: center; margin: 20px auto; max-width: 100%;">
+                <!-- Butterfly emoji in corner -->
+                <div style="position: absolute; top: -10px; left: -10px; font-size: 2.5rem; z-index: 10; animation: float 3s ease-in-out infinite;">
+                    🦋
+                </div>
+                
+                <img src="number-7-magic.png" 
+                     alt="The Magic of Number 7 - Birthday Calculation" 
+                     style="width: 100%; 
+                            max-width: 100%; 
+                            height: auto; 
+                            border-radius: 15px; 
+                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                            transition: transform 0.3s ease;">
+            </div>
+
+            <h2 style="font-family: 'Dancing Script', cursive; margin-top: 25px; font-size: 2.5rem; color: #1a1a1a; text-shadow: 2px 2px 4px rgba(255,255,255,0.5); margin-bottom: 5px;">
+                Thala For A Reason! 🦁
+            </h2>
+            <p style="font-size: 0.85rem; color: #2c2c2c; font-weight: 500;">(The Universe really wanted you to be a Dhoni fan! 😉)</p>
+        </div>
+
+        <!-- DHONI SPECIAL VIDEO MESSAGE -->
+        <div id="dhoni-video-section" style="margin: 50px auto; max-width: 700px; text-align: center;">
+            
+            <h3 style="font-family: 'Dancing Script', cursive; 
+                       font-size: 2.2rem; 
+                       color: #ff4081; 
+                       margin-bottom: 10px;">
+                🏏 A Special Message from Captain Cool 🏏
+            </h3>
+            
+            <p style="font-size: 1rem; 
+                      color: #666; 
+                      margin: 15px 0 25px 0;">
+                Since you're the biggest MSD fan... 🏆
+            </p>
+            
+            <!-- 9:16 VERTICAL VIDEO (MOBILE OPTIMIZED) -->
+            <div style="display: flex; justify-content: center; margin: 0 auto;">
+                <video id="dhoni-video" controls 
+                       style="width: 100%; 
+                              max-width: 360px; 
+                              aspect-ratio: 9/16;
+                              border-radius: 15px; 
+                              box-shadow: 0 10px 30px rgba(255, 64, 129, 0.3);
+                              border: 3px solid #ffd6e3;">
+                    <source src="dhoni-birthday-wish.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <!-- MESSAGE BELOW VIDEO -->
+            <div style="background: linear-gradient(135deg, #fff5f7 0%, #ffe8f0 100%); 
+                        padding: 25px; 
+                        border-radius: 15px; 
+                        border: 2px solid #ffd6e3; 
+                        margin-top: 20px;
+                        box-shadow: 0 8px 20px rgba(255, 64, 129, 0.15);
+                        text-align: left;">
+                
+                <p style="font-size: 0.95rem; 
+                          color: #555; 
+                          line-height: 1.8; 
+                          margin: 0;">
+                    <strong style="color: #d63384;">A Little Note:</strong><br><br>
+                    
+                    I know this video is AI-generated (obviously, I can't get the real 
+                    Thala to wish you! 😅), but I really wanted to give you something 
+                    special on your birthday - something that would genuinely make you happy.
+                    <br><br>
+                    
+                    Since you're such a huge MSD and CSK fan, I thought there's nothing 
+                    better than a birthday wish from Captain Cool himself (even if it's 
+                    AI-created!).
+                    <br><br>
+                    
+                    <em style="color: #d63384;">Honestly, this took way more effort than 
+                    I expected</em> - finding the right tools, getting Dhoni's voice right, 
+                    syncing everything perfectly, multiple attempts to make it look natural... 
+                    but seeing the final result made it all worth it.
+                    <br><br>
+                    
+                    Hope this brings a smile to your face! That's all that matters. 
+                    <strong>Happy Birthday, Shriya! 🎂✨</strong>
+                </p>
+            </div>
+            
+            <p style="text-align: center; 
+                      font-size: 0.8rem; 
+                      color: #999; 
+                      margin-top: 15px; 
+                      font-style: italic;">
+                AI-Generated Fan Tribute • Made with lots of effort & ❤️
+            </p>
+        </div>
+
+        <!-- AI PHOTO GIFT SECTION -->
+        <div class="ai-gift-section" style="background: linear-gradient(135deg, #fff 0%, #ffe6e9 100%); padding: 25px; border-radius: 20px; margin: 40px 0; box-shadow: 0 10px 30px rgba(255, 64, 129, 0.15); border: 3px dashed #ff8fa3;">
+            <h3 style="font-family: 'Dancing Script', cursive; font-size: 2rem; color: #ff4081; margin-top: 0; margin-bottom: 10px;">🎁 Special Gift: Your Photo with Thala!</h3>
+            
+            <p style="font-size: 0.95rem; line-height: 1.7; color: #555; margin-bottom: 20px;">
+                Want to see yourself with MS Dhoni? Here's the magic! ✨<br>
+                <b style="color: #d63384;">Follow these steps:</b>
+            </p>
+
+            <div style="background: rgba(255,255,255,0.8); padding: 15px; border-radius: 12px; margin-bottom: 20px; border-left: 4px solid #ff4081;">
+                <p style="margin: 8px 0; font-size: 0.9rem; color: #444;"><b>Step 1:</b> Go to ChatGPT (free version works!)</p>
+                <p style="margin: 8px 0; font-size: 0.9rem; color: #444;"><b>Step 2:</b> Upload your photo + a reference photo of MS Dhoni</p>
+                <p style="margin: 8px 0; font-size: 0.9rem; color: #444;"><b>Step 3:</b> Copy & paste the prompt below</p>
+                <p style="margin: 8px 0; font-size: 0.9rem; color: #444;"><b>Step 4:</b> Watch the magic happen! 🪄</p>
+            </div>
+
+            <!-- Copy Button (Always Visible) -->
+            <button onclick="copyPrompt()" style="background: linear-gradient(45deg, #ff4081, #ff80ab); color: white; border: none; padding: 12px 30px; border-radius: 30px; font-size: 1rem; cursor: pointer; font-weight: 600; box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3); margin-bottom: 15px; transition: transform 0.2s; font-family: 'Poppins', sans-serif; width: 100%; max-width: 300px;">
+                📋 Copy Prompt
+            </button>
+
+            <!-- Collapsible Prompt Section -->
+            <div style="text-align: center; margin-bottom: 15px;">
+                <button onclick="togglePrompt()" id="toggle-prompt-btn" style="background: transparent; color: #d63384; border: 2px solid #ff8fa3; padding: 8px 20px; border-radius: 20px; font-size: 0.9rem; cursor: pointer; font-weight: 600; transition: all 0.3s; font-family: 'Poppins', sans-serif;">
+                    👁️ View Full Prompt
+                </button>
+            </div>
+
+            <div id="ai-prompt-container" style="display: none; background: #fff; padding: 20px; border-radius: 12px; border: 2px solid #ffcdd2; max-height: 400px; overflow-y: auto; text-align: left; animation: slideDown 0.3s ease-out;">
+                <p id="ai-prompt-text" style="font-size: 0.85rem; line-height: 1.6; color: #333; margin: 0; white-space: pre-wrap; font-family: 'Courier New', monospace;">Create a hyper-realistic photograph showing two people together celebrating at a cricket stadium. The first person (from uploaded reference image 1) should be wearing casual clothes and standing on the left with a bright smile. The second person (from uploaded reference image 2 - MS Dhoni) should be wearing the iconic yellow CSK jersey with number 7, standing on the right. They should have their arms around each other's shoulders in a friendly celebratory pose. The background should show a cricket stadium with cheering crowds, perfect lighting, and CSK team colors visible. Make sure both faces are clearly visible, well-lit, and the overall composition looks natural and professional - as if this was an actual photograph taken at a match celebration. Pay special attention to skin tones, lighting consistency, and realistic shadows.</p>
+            </div>
+
+            <p style="font-size: 0.8rem; color: #888; margin-top: 15px; font-style: italic;">
+                💡 Tip: Try different prompts or angles for best results!
+            </p>
+        </div>
+
+        <div class="gift-section">
+            <div id="gift-box" onclick="openGift()">
+                <img src="gift-box.png" alt="Gift Box" style="width: 180px;">
+                <div class="tap-text">👆 Tap to Open Surprise</div>
+            </div>
+            <div id="hidden-gift">
+                <img src="crown.png" alt="Crown" style="width: 150px;">
+                <div style="color: #d63384; font-weight: bold; font-size: 1.4rem; margin: 10px 0;">The "Best Smile" Award</div>
+                <div style="color: #666;">Goes to <b>Shriya</b>!<br>Keep smiling always. ✨</div>
+            </div>
+        </div>
+
+        <div class="shayari-clean">
+            <p>"Teri aankhon mein jo chamak hai,<br>Teri muskaan mein jo raunaq hai.<br>Dua hai bas yehi, tu yunhi khilkhilati rahe,<br>Teri khushi ka asar har pal chamakta rahe."</p>
+        </div>
+        
+        <br><p style="font-size: 2rem; opacity: 0.7;">🌸 🎉 🎈</p>
+
+        <!-- QUESTION SECTION -->
+        <div class="wish-card" id="question-section">
+            <h3 style="color:#ff4081; font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-top: 0;">✨ A Little Something Special ✨</h3>
+            <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">Answer these two questions to unlock your surprise! 🎁</p>
+            
+            <div id="question-form">
+                <label style="display: block; text-align: left; font-weight: 600; color: #d63384; margin-bottom: 5px;">1. Write one goal you want to achieve before your next birthday:</label>
+                <textarea class="question-input" id="answer1" placeholder="Type your goal here..."></textarea>
+                
+                <label style="display: block; text-align: left; font-weight: 600; color: #d63384; margin-bottom: 5px; margin-top: 15px;">2. If your life was a book, what would be the title of this current chapter?</label>
+                <textarea class="question-input" id="answer2" placeholder="Type your chapter title here..."></textarea>
+                
+                <button class="submit-btn" onclick="submitAnswers()">Submit & Unlock 🎁</button>
+            </div>
+            
+            <div id="thank-you-message">
+                <h3>✨ Thank You! ✨</h3>
+                <p>Your dreams and thoughts mean the world. Keep chasing those goals and writing your beautiful story. Remember, every chapter brings new adventures and endless possibilities. Stay amazing! 💫</p>
+            </div>
+        </div>
+
+        <div class="final-message">
+            <h3>Happy Birthday once again! 🎂</h3>
+            <p>"Your dreams and goals shine in everything you do. Here's to all the amazing things you'll achieve this year. Consider me a silent cheerleader in your corner - someone who will never be a distraction, but always a source of strength whenever you need it. Stay awesome, Shriya! ✨"</p>
+        </div>
+
+        <div class="footer">
+            Built with <span>❤️</span> by Omkar
+        </div>
+        
+        <br>
+    </div>
+
+    <script>
+        // Script loaded successfully
+        console.log('✅ Birthday site script loaded!');
+        
+        // ============================================
+        // 🔔 DISCORD WEBHOOK TRACKING - COMPLETE
+        // ============================================
+        
+        // ⚠️ DISCORD WEBHOOK URLs:
+        // Main Channel - Site Interactions + Device Info
+        var DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1472525053215375635/bUVuaHGZ3nc4rLLuhRzoyFnPrOFwjdtjRrvBmis_FiPkQm4olNiQhII1z62EW-K7H5us';
+        
+        // Visitor/Share Tracking Channel - Only visitor and share alerts
+        var DISCORD_WEBHOOK_VISITOR = 'https://discord.com/api/webhooks/1475719250130899006/iJMvdW-xsN1PTAXS60oG1wkeKtoG5I1qjrpu1pjPcFAkO--oZQodSifbtrUBbjAbbvaU';
+        
+        // Session tracking
+        var sessionData = {
+            siteOpenTime: new Date().toISOString(),
+            deviceInfo: navigator.userAgent,
+            screenSize: window.innerWidth + 'x' + window.innerHeight,
+            events: [],
+            locationData: null,  // Will be filled by IP geolocation
+            visitorId: generateVisitorId()
+        };
+        
+        // Generate unique visitor ID (stored in sessionStorage for this session)
+        function generateVisitorId() {
+            var existingId = sessionStorage.getItem('visitorId');
+            if (existingId) {
+                return existingId;
+            }
+            var newId = 'v_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            sessionStorage.setItem('visitorId', newId);
+            return newId;
+        }
+        
+        // Get visitor count from localStorage
+        function getAndIncrementVisitorCount() {
+            var count = localStorage.getItem('totalVisitors') || '0';
+            var newCount = parseInt(count) + 1;
+            localStorage.setItem('totalVisitors', newCount.toString());
+            
+            // Store this visitor's number
+            if (!sessionStorage.getItem('myVisitorNumber')) {
+                sessionStorage.setItem('myVisitorNumber', newCount.toString());
+            }
+            
+            return parseInt(sessionStorage.getItem('myVisitorNumber'));
+        }
+        
+        // Get referrer source
+        function getReferrerSource() {
+            var referrer = document.referrer || '';
+            if (!referrer) return 'Direct Link';
+            
+            if (referrer.includes('wa.me') || referrer.includes('whatsapp') || referrer.includes('web.whatsapp')) {
+                return 'WhatsApp 💬';
+            } else if (referrer.includes('instagram') || referrer.includes('ig.me')) {
+                return 'Instagram 📸';
+            } else if (referrer.includes('facebook') || referrer.includes('fb.com')) {
+                return 'Facebook 📘';
+            } else if (referrer.includes('twitter') || referrer.includes('t.co')) {
+                return 'Twitter 🐦';
+            } else if (referrer.includes('telegram')) {
+                return 'Telegram ✈️';
+            } else if (referrer.includes('messenger')) {
+                return 'Messenger 💬';
+            } else if (referrer.includes('snapchat')) {
+                return 'Snapchat 👻';
+            } else {
+                return 'Other Source';
+            }
+        }
+        
+        // Analyze if link was likely shared
+        function analyzeSharing(visitorNumber) {
+            if (visitorNumber === 1) {
+                return {
+                    isShared: false,
+                    confidence: 'PRIMARY',
+                    reason: 'First visitor to open the link'
+                };
+            }
+            
+            var redFlags = 0;
+            var reasons = [];
+            
+            // Check referrer
+            var source = getReferrerSource();
+            if (source.includes('WhatsApp') || source.includes('Instagram') || source.includes('Facebook') || source.includes('Telegram')) {
+                redFlags += 2;
+                reasons.push('Opened from social media: ' + source);
+            }
+            
+            // Check if it's not the first visit (visitor number > 1)
+            redFlags += 2;
+            reasons.push('Multiple visitors detected');
+            
+            // Determine confidence level
+            var confidence = 'LOW';
+            var isShared = false;
+            
+            if (redFlags >= 3) {
+                confidence = 'HIGH';
+                isShared = true;
+            } else if (redFlags >= 2) {
+                confidence = 'MEDIUM';
+                isShared = true;
+            }
+            
+            return {
+                isShared: isShared,
+                confidence: confidence,
+                reason: reasons.join(' | '),
+                redFlags: redFlags
+            };
+        }
+        
+        // Detect device type, OS, and browser from user agent
+        function getDeviceDetails() {
+            var ua = navigator.userAgent;
+            var details = {
+                deviceType: 'Desktop 💻',
+                os: 'Unknown',
+                browser: 'Unknown',
+                isMobile: false
+            };
+            
+            // Device Type
+            if (/Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
+                details.isMobile = true;
+                if (/iPad/i.test(ua)) {
+                    details.deviceType = 'iPad 📱';
+                } else if (/iPhone/i.test(ua)) {
+                    details.deviceType = 'iPhone 📱';
+                } else if (/Android/i.test(ua)) {
+                    details.deviceType = 'Android Phone 📱';
+                } else {
+                    details.deviceType = 'Mobile 📱';
+                }
+            } else if (/Tablet/i.test(ua)) {
+                details.deviceType = 'Tablet 📱';
+            }
+            
+            // Operating System
+            if (/Windows NT 10/i.test(ua)) details.os = 'Windows 10/11';
+            else if (/Windows NT 6.3/i.test(ua)) details.os = 'Windows 8.1';
+            else if (/Windows NT 6.2/i.test(ua)) details.os = 'Windows 8';
+            else if (/Windows NT 6.1/i.test(ua)) details.os = 'Windows 7';
+            else if (/Windows/i.test(ua)) details.os = 'Windows';
+            else if (/Mac OS X 10[._]15/i.test(ua)) details.os = 'macOS Catalina+';
+            else if (/Mac OS X/i.test(ua)) details.os = 'macOS';
+            else if (/Android 1[4-9]/i.test(ua)) details.os = 'Android 14+';
+            else if (/Android 1[0-3]/i.test(ua)) details.os = 'Android ' + (ua.match(/Android (\d+)/i) || ['',''])[1];
+            else if (/Android/i.test(ua)) details.os = 'Android';
+            else if (/iPhone OS 1[7-9]|iPhone OS 2/i.test(ua)) details.os = 'iOS 17+';
+            else if (/iPhone OS/i.test(ua)) details.os = 'iOS ' + (ua.match(/iPhone OS (\d+)/i) || ['',''])[1];
+            else if (/iPad.*OS 1[7-9]|iPad.*OS 2/i.test(ua)) details.os = 'iPadOS 17+';
+            else if (/iPad/i.test(ua)) details.os = 'iPadOS';
+            else if (/Linux/i.test(ua)) details.os = 'Linux';
+            
+            // Browser
+            if (/EdgA?/i.test(ua)) details.browser = 'Edge';
+            else if (/Chrome/i.test(ua) && !/Edg/i.test(ua)) details.browser = 'Chrome';
+            else if (/Safari/i.test(ua) && !/Chrome/i.test(ua)) details.browser = 'Safari';
+            else if (/Firefox/i.test(ua)) details.browser = 'Firefox';
+            else if (/Opera|OPR/i.test(ua)) details.browser = 'Opera';
+            else if (/MSIE|Trident/i.test(ua)) details.browser = 'Internet Explorer';
+            
+            return details;
+        }
+        
+        // Get location from IP (automatic, no permission needed)
+        function getLocationData() {
+            // Using free IP geolocation API
+            fetch('https://ipapi.co/json/')
+                .then(function(response) { return response.json(); })
+                .then(function(data) {
+                    sessionData.locationData = {
+                        city: data.city || 'Unknown',
+                        region: data.region || 'Unknown',
+                        country: data.country_name || 'Unknown',
+                        countryCode: data.country_code || '',
+                        timezone: data.timezone || 'Unknown',
+                        isp: data.org || 'Unknown'
+                    };
+                })
+                .catch(function(err) {
+                    console.log('Location fetch skipped');
+                    sessionData.locationData = { city: 'Unknown', country: 'Unknown' };
+                });
+        }
+        
+        // Call location API on page load
+        getLocationData();
+        
+        var sectionTimings = {
+            welcomeScreen: Date.now(),
+            currentSection: 'welcome'
+        };
+        
+        var pageVisible = true;
+        var totalTimeSpent = 0;
+        var lastVisibleTime = Date.now();
+        
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                pageVisible = false;
+                totalTimeSpent += Date.now() - lastVisibleTime;
+            } else {
+                pageVisible = true;
+                lastVisibleTime = Date.now();
+            }
+        });
+        
+        function getTimeSpent() {
+            if (pageVisible) {
+                return totalTimeSpent + (Date.now() - lastVisibleTime);
+            }
+            return totalTimeSpent;
+        }
+        
+        function formatTime(ms) {
+            var seconds = Math.floor(ms / 1000);
+            var minutes = Math.floor(seconds / 60);
+            seconds = seconds % 60;
+            return minutes + 'm ' + seconds + 's';
+        }
+        
+        // MAIN TRACKING FUNCTION - SENDS TO DISCORD
+        function logEvent(eventName, eventData = {}) {
+            var timestamp = new Date().toISOString();
+            var timeSpent = formatTime(getTimeSpent());
+            
+            var event = {
+                timestamp: timestamp,
+                eventName: eventName,
+                timeSpent: timeSpent,
+                ...eventData
+            };
+            
+            sessionData.events.push(event);
+            
+            // Send to Discord
+            sendToDiscord(event);
+            
+            console.log('📊 Event Logged:', event);
+        }
+        
+        // DISCORD WEBHOOK SENDER - DUAL CHANNEL SYSTEM
+        function sendToDiscord(data) {
+            if (DISCORD_WEBHOOK_URL === 'YOUR_DISCORD_WEBHOOK_URL_HERE') {
+                console.log('⚠️ Discord webhook not configured');
+                return;
+            }
+            
+            var deviceDetails = getDeviceDetails();
+            var isVisitorEvent = (data.eventName === 'Site Loaded' || data.eventName === 'Site Entered');
+            
+            // Determine which webhook to use
+            var webhookURL = isVisitorEvent ? DISCORD_WEBHOOK_VISITOR : DISCORD_WEBHOOK_URL;
+            
+            // Create beautiful embed message
+            var color = getEventColor(data.eventName);
+            var emoji = getEventEmoji(data.eventName);
+            
+            var embed = {
+                title: `${emoji} ${data.eventName}`,
+                color: color,
+                fields: [],
+                footer: {
+                    text: "Shriya Birthday Tracker"
+                },
+                timestamp: data.timestamp
+            };
+            
+            // VISITOR/SHARE TRACKING (Channel 2 - Visitor Channel)
+            if (isVisitorEvent) {
+                var visitorNum = getAndIncrementVisitorCount();
+                var shareAnalysis = analyzeSharing(visitorNum);
+                var referrerSource = getReferrerSource();
+                
+                // Visitor number with special marking
+                var visitorTitle = '👤 Visitor #' + visitorNum;
+                if (visitorNum === 1) {
+                    visitorTitle += ' - PRIMARY VISITOR';
+                } else if (shareAnalysis.isShared) {
+                    if (shareAnalysis.confidence === 'HIGH') {
+                        visitorTitle += ' ⚠️ LIKELY SHARED!';
+                        embed.color = 16744272; // Orange color for shared
+                    } else {
+                        visitorTitle += ' ⚠️ POSSIBLY SHARED';
+                        embed.color = 16776960; // Yellow for possible share
+                    }
+                }
+                
+                embed.fields.push({
+                    name: visitorTitle,
+                    value: shareAnalysis.reason,
+                    inline: false
+                });
+                
+                // Device info
+                embed.fields.push({
+                    name: "📱 Device",
+                    value: deviceDetails.deviceType,
+                    inline: true
+                });
+                embed.fields.push({
+                    name: "💻 OS",
+                    value: deviceDetails.os,
+                    inline: true
+                });
+                embed.fields.push({
+                    name: "🌐 Browser",
+                    value: deviceDetails.browser,
+                    inline: true
+                });
+                embed.fields.push({
+                    name: "📏 Screen Size",
+                    value: sessionData.screenSize,
+                    inline: true
+                });
+                
+                // Add location if available
+                if (sessionData.locationData) {
+                    var locationText = sessionData.locationData.city + ', ' + sessionData.locationData.country;
+                    if (sessionData.locationData.countryCode) {
+                        locationText += ' ' + getFlagEmoji(sessionData.locationData.countryCode);
+                    }
+                    embed.fields.push({
+                        name: "🗺️ Location",
+                        value: locationText,
+                        inline: true
+                    });
+                    embed.fields.push({
+                        name: "🌍 ISP",
+                        value: sessionData.locationData.isp,
+                        inline: true
+                    });
+                }
+                
+                // Referrer source
+                embed.fields.push({
+                    name: "🔗 Source",
+                    value: referrerSource,
+                    inline: true
+                });
+                
+                // Add analysis message for non-first visitors
+                if (visitorNum > 1 && shareAnalysis.isShared) {
+                    var analysisEmoji = shareAnalysis.confidence === 'HIGH' ? '🚨' : '⚠️';
+                    embed.fields.push({
+                        name: analysisEmoji + " Share Analysis",
+                        value: "Different device/source detected. Link may have been shared by Visitor #1!",
+                        inline: false
+                    });
+                }
+            }
+            // SITE INTERACTIONS (Channel 1 - Main Channel) - Clean event messages only
+            else {
+                // No device info here - only in initial visitor tracking
+            }
+            
+            
+            // Standard time fields (for all messages)
+            embed.fields.push({
+                name: "⏰ Time Spent on Site",
+                value: data.timeSpent,
+                inline: true
+            });
+            embed.fields.push({
+                name: "🕐 Timestamp",
+                value: new Date(data.timestamp).toLocaleString(),
+                inline: true
+            });
+            
+            // Add extra fields based on event type
+            if (data.goal) {
+                embed.fields.push({
+                    name: "🎯 Her Goal",
+                    value: data.goal,
+                    inline: false
+                });
+            }
+            
+            if (data.chapterTitle) {
+                embed.fields.push({
+                    name: "📖 Life Chapter Title",
+                    value: data.chapterTitle,
+                    inline: false
+                });
+            }
+            
+            if (data.taskName) {
+                embed.fields.push({
+                    name: "✅ Task Completed",
+                    value: data.taskName,
+                    inline: false
+                });
+            }
+            
+            if (data.totalClicks) {
+                embed.fields.push({
+                    name: "💖 Total Clicks",
+                    value: data.totalClicks.toString(),
+                    inline: true
+                });
+            }
+            
+            if (data.timeTaken || data.timeToComplete) {
+                embed.fields.push({
+                    name: "⏱️ Time Taken",
+                    value: data.timeTaken || data.timeToComplete,
+                    inline: true
+                });
+            }
+            
+            if (data.timeOnWelcomeScreen) {
+                embed.fields.push({
+                    name: "⏱️ Welcome Screen Time",
+                    value: data.timeOnWelcomeScreen,
+                    inline: true
+                });
+            }
+            
+            // Send to appropriate Discord channel
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    embeds: [embed]
+                })
+            }).then(() => {
+                console.log('✅ Sent to Discord!');
+            }).catch(err => {
+                console.log('❌ Discord send failed:', err);
+            });
+        }
+        
+        // Get country flag emoji from country code
+        function getFlagEmoji(countryCode) {
+            if (!countryCode || countryCode.length !== 2) return '';
+            var codePoints = countryCode.toUpperCase().split('').map(function(char) { 
+                return 127397 + char.charCodeAt(0); 
+            });
+            return String.fromCodePoint.apply(null, codePoints);
+        }
+        
+        // Event colors for Discord embeds
+        function getEventColor(eventName) {
+            var colors = {
+                'Site Loaded': 3447003,        // Blue
+                'Site Entered': 10181046,      // Purple
+                'Candle Blown': 15844367,      // Gold
+                'Task Checked': 3066993,       // Teal
+                'All Tasks Completed': 3066993,// Teal
+                'Heart Game Started': 15158332,// Pink
+                'Heart Game Completed': 15158332, // Pink
+                'Prediction Viewed': 10181046, // Purple
+                'Gift Box Opened': 15844367,   // Gold
+                'Dhoni Video Played': 16753920, // Orange (CSK color!)
+                'Questions Answered': 15158332,// Pink (MOST IMPORTANT!)
+                'AI Prompt Viewed': 3447003,   // Blue
+                'AI Prompt Copied': 3447003,   // Blue
+                'Site Exit': 9807270           // Gray
+            };
+            return colors[eventName] || 9807270;
+        }
+        
+        // Event emojis for Discord
+        function getEventEmoji(eventName) {
+            var emojis = {
+                'Site Loaded': '🌐',
+                'Site Entered': '🎉',
+                'Candle Blown': '🎂',
+                'Task Checked': '✅',
+                'All Tasks Completed': '🎊',
+                'Heart Game Started': '💖',
+                'Heart Game Completed': '🏆',
+                'Prediction Viewed': '🔮',
+                'Gift Box Opened': '🎁',
+                'Dhoni Video Played': '🎬',
+                'Questions Answered': '💝',
+                'AI Prompt Viewed': '🤖',
+                'AI Prompt Copied': '📋',
+                'Site Exit': '👋'
+            };
+            return emojis[eventName] || '📊';
+        }
+
+        // --- AUDIO ELEMENTS ---
+        var pianoAudio = document.getElementById('piano-audio');
+        var songAudio = document.getElementById('song-audio');
+        var tasksChecked = [];
+
+        function startExperience() {
+            console.log('🎁 Start Experience called!');
+            
+            // Simple and working version
+            var btn = document.querySelector('.enter-btn');
+            if (btn) {
+                btn.disabled = true;
+            }
+            
+            document.getElementById('welcome-screen').style.opacity = '0';
+            setTimeout(function() {
+                document.getElementById('welcome-screen').style.display = 'none';
+                document.getElementById('main-site').style.display = 'block';
+                setTimeout(function() {
+                    document.getElementById('main-site').style.opacity = '1';
+                }, 100);
+                
+                var welcomeScreenTime = formatTime(Date.now() - sectionTimings.welcomeScreen);
+                logEvent('Site Entered', { 
+                    timeOnWelcomeScreen: welcomeScreenTime 
+                });
+                sectionTimings.mainSite = Date.now();
+            }, 500);
+        }
+        
+        // Make sure it's globally accessible
+        window.startExperience = startExperience;
+        console.log('✅ startExperience function defined!');
+
+        function blowCandle() {
+            var flame = document.getElementById('candle-flame');
+            if (flame.style.opacity != '0') {
+                flame.style.opacity = '0'; 
+                document.querySelector('.instruction').innerText = "✨ Wish Granted! 🎵";
+                document.querySelector('.instruction').style.background = "#fff0f5";
+                
+                pianoAudio.volume = 0.8;
+                pianoAudio.currentTime = 0;
+                pianoAudio.play().catch(e => console.log('Audio play prevented:', e));
+                
+                for(let i=0; i<30; i++) createFallingElement(true);
+                
+                logEvent('Candle Blown', {
+                    timeFromSiteEntry: formatTime(Date.now() - sectionTimings.mainSite)
+                });
+                sectionTimings.candleBlow = Date.now();
+            }
+        }
+
+        function checkTask() {
+            var checkboxes = document.querySelectorAll('.checklist-section input[type="checkbox"]');
+            var allChecked = true;
+            var checkedTasks = [];
+            
+            checkboxes.forEach(function(box, index) { 
+                if(box.checked) {
+                    var taskName = box.nextElementSibling.textContent;
+                    checkedTasks.push(taskName);
+                    
+                    if (!tasksChecked.includes(index)) {
+                        tasksChecked.push(index);
+                        logEvent('Task Checked', {
+                            taskName: taskName,
+                            taskNumber: index + 1
+                        });
+                    }
+                } else {
+                    allChecked = false;
+                }
+            });
+            
+            if(allChecked && !sectionTimings.allTasksComplete) {
+                document.getElementById('hidden-roses').style.display = 'block';
+                
+                pianoAudio.pause();
+                pianoAudio.currentTime = 0;
+                songAudio.volume = 1.0;
+                songAudio.currentTime = 0;
+                songAudio.play().catch(e => console.log('Audio play prevented:', e));
+                
+                for(let i=0; i<30; i++) createFallingElement(true);
+                
+                logEvent('All Tasks Completed', {
+                    tasksCompleted: checkedTasks.join(', '),
+                    timeToComplete: formatTime(Date.now() - (sectionTimings.candleBlow || sectionTimings.mainSite))
+                });
+                sectionTimings.allTasksComplete = Date.now();
+            }
+        }
+
+        var score = 0; var gameWon = false;
+        var heartClickCount = 0;
+        var heartGameStartTime = null;
+        
+        function addHeart() { 
+            if(gameWon) return;
+            
+            if (heartClickCount === 0) {
+                heartGameStartTime = Date.now();
+                logEvent('Heart Game Started');
+            }
+            
+            heartClickCount++;
+            score += 10; 
+            document.getElementById('score').innerText = score; 
+            var msg = document.getElementById('level-msg'); 
+            var heartBtn = document.querySelector('.heart-btn'); 
+            heartBtn.style.transform = "scale(0.8)"; 
+            setTimeout(() => heartBtn.style.transform = "scale(1)", 100); 
+            
+            if(score == 20) msg.innerText = "Good start! Keep going... 🚀"; 
+            if(score == 50) msg.innerText = "Halfway there! You're doing great! ✨"; 
+            if(score == 80) msg.innerText = "Almost there! Don't stop! 🔥"; 
+            
+            if(score >= 100) { 
+                gameWon = true; 
+                msg.innerText = "CONGRATULATIONS! 🎉"; 
+                document.querySelector('.heart-btn').style.display = 'none'; 
+                document.getElementById('golden-card').style.display = 'block'; 
+                for(let i=0; i<50; i++) createFallingElement(true);
+                
+                logEvent('Heart Game Completed', {
+                    totalClicks: heartClickCount,
+                    timeTaken: formatTime(Date.now() - heartGameStartTime)
+                });
+            } 
+        }
+        
+        function showPrediction() { 
+            var textBox = document.getElementById('prediction-text'); 
+            textBox.style.opacity = 0; 
+            textBox.innerHTML = "Reading the stars... ✨"; 
+            textBox.style.opacity = 0.7; 
+            
+            logEvent('Prediction Viewed');
+            
+            setTimeout(() => { 
+                textBox.innerHTML = "✨ The Universe Says: <br><br> This year belongs to YOU! 🌟 <br> You will achieve every single goal and happiness will find you everywhere."; 
+                textBox.style.opacity = 1; 
+                for(let i=0; i<20; i++) createFallingElement(true);
+            }, 1000); 
+        }
+        
+        function openGift() { 
+            document.getElementById('gift-box').style.display = 'none'; 
+            document.getElementById('hidden-gift').style.display = 'block'; 
+            for(let i=0; i<50; i++) createFallingElement(true);
+            
+            logEvent('Gift Box Opened');
+        }
+        
+        function createFallingElement(isExplosion = false) { 
+            const elements = ['🌸', '🌹', '✨', '🦋', '🍬']; 
+            const item = document.createElement('div'); 
+            item.innerText = elements[Math.floor(Math.random() * elements.length)]; 
+            item.classList.add('falling-item'); 
+            item.style.left = Math.random() * 95 + 'vw'; 
+            item.style.fontSize = Math.random() * 20 + 15 + 'px'; 
+            if(isExplosion) { 
+                item.style.top = '50%'; 
+                item.style.animationDuration = Math.random() * 2 + 1 + 's'; 
+            } else { 
+                item.style.animationDuration = Math.random() * 3 + 4 + 's'; 
+            } 
+            document.body.appendChild(item); 
+            setTimeout(() => { item.remove(); }, 5000); 
+        } 
+        
+        setInterval(() => createFallingElement(false), 800);
+
+        // QUESTION SECTION - MOST IMPORTANT!
+        function submitAnswers() {
+            const answer1 = document.getElementById('answer1').value.trim();
+            const answer2 = document.getElementById('answer2').value.trim();
+            
+            if (!answer1 || !answer2) {
+                alert('Please answer both questions! 🎁');
+                return;
+            }
+            
+            // THIS IS THE MOST IMPORTANT EVENT! 💝
+            logEvent('Questions Answered', { 
+                goal: answer1, 
+                chapterTitle: answer2,
+                answerLength1: answer1.length,
+                answerLength2: answer2.length
+            });
+            
+            document.getElementById('question-form').style.display = 'none';
+            document.getElementById('thank-you-message').style.display = 'block';
+            
+            for(let i=0; i<40; i++) createFallingElement(true);
+        }
+
+        // --- AI PROMPT GIFT SECTION ---
+        function togglePrompt() {
+            const container = document.getElementById('ai-prompt-container');
+            const button = document.getElementById('toggle-prompt-btn');
+            
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+                button.innerHTML = '👁️ Hide Prompt';
+                button.style.background = '#fff0f5';
+                logEvent('AI Prompt Viewed');
+            } else {
+                container.style.display = 'none';
+                button.innerHTML = '👁️ View Full Prompt';
+                button.style.background = 'transparent';
+            }
+        }
+
+        function copyPrompt() {
+            const promptText = document.getElementById('ai-prompt-text').textContent;
+            
+            // Modern clipboard API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(promptText).then(() => {
+                    // Success feedback
+                    const btn = event.target;
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '✅ Copied!';
+                    btn.style.background = '#4CAF50';
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = 'linear-gradient(45deg, #ff4081, #ff80ab)';
+                    }, 2000);
+                    
+                    // Create confetti effect
+                    for(let i=0; i<20; i++) createFallingElement(true);
+                    
+                    logEvent('AI Prompt Copied');
+                }).catch(err => {
+                    // Fallback for older browsers
+                    fallbackCopy(promptText);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopy(promptText);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                alert('Prompt copied! 📋 Paste it in ChatGPT!');
+                logEvent('AI Prompt Copied (Fallback)');
+            } catch (err) {
+                alert('Please manually copy the prompt from below! 💡');
+            }
+            
+            document.body.removeChild(textArea);
+        }
+        
+        // Track exit
+        window.addEventListener('beforeunload', function() {
+            var finalTimeSpent = formatTime(getTimeSpent());
+            logEvent('Site Exit', {
+                totalTimeSpent: finalTimeSpent,
+                eventsCompleted: sessionData.events.length
+            });
+        });
+        
+        // DHONI VIDEO PLAY TRACKING + SONG AUDIO CONTROL
+        var dhoniVideo = document.getElementById('dhoni-video');
+        var dhoniVideoPlayed = false;
+        var songWasPlayingBeforeVideo = false; // Track if song was playing
+        
+        if (dhoniVideo) {
+            // When video starts playing - pause song
+            dhoniVideo.addEventListener('play', function() {
+                // Track first play
+                if (!dhoniVideoPlayed) {
+                    dhoniVideoPlayed = true;
+                    logEvent('Dhoni Video Played');
+                    console.log('🎬 Dhoni video started playing!');
+                }
+                
+                // Check if song is playing and pause it
+                if (songAudio && !songAudio.paused) {
+                    songWasPlayingBeforeVideo = true; // Remember song was playing
+                    songAudio.pause();
+                    console.log('🔇 Song paused for video');
+                } else {
+                    songWasPlayingBeforeVideo = false; // Song wasn't playing
+                }
+            });
+            
+            // When video pauses - resume song
+            dhoniVideo.addEventListener('pause', function() {
+                // Only resume if song was playing before AND video is not ended
+                if (songAudio && songWasPlayingBeforeVideo && !dhoniVideo.ended) {
+                    songAudio.play().catch(function(error) {
+                        console.log('Could not resume song:', error);
+                    });
+                    console.log('🔊 Song resumed after video pause');
+                }
+            });
+            
+            // When video ends - resume song
+            dhoniVideo.addEventListener('ended', function() {
+                // Resume song if it was playing before
+                if (songAudio && songWasPlayingBeforeVideo) {
+                    songAudio.play().catch(function(error) {
+                        console.log('Could not resume song:', error);
+                    });
+                    console.log('🔊 Song resumed after video ended');
+                    songWasPlayingBeforeVideo = false; // Reset flag
+                }
+            });
+        }
+
+        
+        // Log initial page load (with small delay for location data)
+        setTimeout(function() {
+            logEvent('Site Loaded', {
+                userAgent: navigator.userAgent,
+                screenSize: window.innerWidth + 'x' + window.innerHeight,
+                language: navigator.language
+            });
+        }, 1000);  // 1 second delay for location API
+    </script>
+</body>
+</html>
